@@ -1,11 +1,21 @@
 docker-elk
 ===
 
-Simple dev environment for ELK stack. Saving test.log into elasticsearch via filebeat and logstash.
+Simple dev environment for ELK stack.
 
-# Usage
+Saving test.log into elasticsearch via filebeat and logstash.
 
-In one window, `> docker-compose up`
+# Requirement (macOS)
 
-In another window `echo '{"nickname": "goofansu"}' > test.log`
+`brew install filebeat`
 
+# Run
+
+Terminal 1: `docker-compose up`
+Terminal 2: `filebeat -c filebeat.yml`
+
+# Test
+
+``` bash
+echo '{"nickname": "goofansu"}' > test.log
+```
