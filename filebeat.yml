@@ -1,6 +1,8 @@
 filebeat:
   prospectors:
     -
+      input_type: stdin
+    -
       paths:
         - "*.log"
       spool_size: 2048

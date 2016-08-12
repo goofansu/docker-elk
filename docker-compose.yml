@@ -24,3 +24,10 @@ services:
     command: [-f, /config-dir/logstash.conf]
     ports:
       - "10200:10200"
+
+  grafana:
+    image: grafana/grafana:latest
+    links:
+      - elasticsearch
+    ports:
+      - "3000:3000"

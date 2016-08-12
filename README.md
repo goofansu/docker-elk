@@ -16,4 +16,5 @@ Saving test.log into elasticsearch via filebeat and logstash.
 
 # Test
 
-`echo '{"nickname": "goofansu"}' > test.log`
+* `touch test.log && echo '{"nickname": "test"}' >> test.log`
+* In filebeat stdin, input `{"nickname": "test"}` and return
