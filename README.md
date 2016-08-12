@@ -11,11 +11,9 @@ Saving test.log into elasticsearch via filebeat and logstash.
 
 # Run
 
-Terminal 1: `docker-compose up`
-Terminal 2: `filebeat -c filebeat.yml`
+1. `docker-compose up`
+2. `filebeat -c filebeat.yml`
 
 # Test
 
-``` bash
-echo '{"nickname": "goofansu"}' > test.log
-```
+`echo '{"nickname": "goofansu"}' > test.log`
