@@ -1,0 +1,14 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - "*.log"
+      spool_size: 2048
+      idle_timeout: 5s
+      fields:
+        env: dev
+
+output:
+  logstash:
+    hosts: ["localhost"]
+    index: hope
