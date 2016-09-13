@@ -30,4 +30,4 @@ services:
     links:
       - elasticsearch
     ports:
-      - "3000:3000"
+      - "5602:3000"
