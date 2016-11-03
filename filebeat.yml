@@ -2,13 +2,16 @@ filebeat:
   prospectors:
     -
       input_type: stdin
+      fields:
+        server: game1
     -
       paths:
         - "*.log"
-      spool_size: 2048
-      idle_timeout: 5s
       fields:
-        env: dev
+        server: game2
+
+  spool_size: 2048
+  idle_timeout: 5s
 
 output:
   logstash:
