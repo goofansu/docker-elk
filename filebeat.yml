@@ -12,6 +12,9 @@ filebeat:
 
   spool_size: 2048
   idle_timeout: 5s
+  include_lines: ["OnSucSurrender", "TutorialPlayerChoice","NewPlayerFirstLogin","MissionCompleteID","Shop","ScriptFormatLog","AthleticsPlayerEnter","MinusDiamond","ComplateTask",
+  "AddDiamond","EndData:","StartInstance","'Component:Buy","PlayerSkillToPos","PlayerSkillToTarget","backHome","UseHppotion",
+"SmalldrogonBeKilled","BigdrogonBeKilled","RedbufferBeKilled","BulebufferBeKilled","EyeBorn","AddPoint","MinusPoint","MinusDiamond1"]
 
 output:
   logstash:
