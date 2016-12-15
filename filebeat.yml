@@ -1,22 +1,19 @@
 filebeat:
   prospectors:
     -
-      input_type: stdin
-      fields:
-        server: game1
-    -
       paths:
         - "*.log"
       fields:
-        server: game2
+        format: json
+    -
+      input_type: stdin
+      fields:
+        format: kv
 
-  spool_size: 2048
-  idle_timeout: 5s
-  include_lines: ["OnSucSurrender", "TutorialPlayerChoice","NewPlayerFirstLogin","MissionCompleteID","Shop","ScriptFormatLog","AthleticsPlayerEnter","MinusDiamond","ComplateTask",
-  "AddDiamond","EndData:","StartInstance","'Component:Buy","PlayerSkillToPos","PlayerSkillToTarget","backHome","UseHppotion",
-"SmalldrogonBeKilled","BigdrogonBeKilled","RedbufferBeKilled","BulebufferBeKilled","EyeBorn","AddPoint","MinusPoint","MinusDiamond1"]
+  spool_size: 10
+  idle_timeout: 1s
 
 output:
   logstash:
-    hosts: ["localhost"]
+    hosts: ["127.0.0.1:10200"]
     index: hope

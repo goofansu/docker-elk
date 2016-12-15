@@ -2,12 +2,12 @@ version: '2'
 
 services:
   elasticsearch:
-    image: elasticsearch:latest
+    image: elasticsearch:2.4
     ports:
       - "9200:9200"
 
   kibana:
-    image: kibana:latest
+    image: kibana:4.6
     links:
       - elasticsearch
     environment:
@@ -16,7 +16,7 @@ services:
       - "5601:5601"
 
   logstash:
-    image: logstash:latest
+    image: logstash:2.4
     links:
       - elasticsearch
     volumes:
@@ -24,10 +24,3 @@ services:
     command: [-f, /config-dir/logstash.conf]
     ports:
       - "10200:10200"
-
-  grafana:
-    image: grafana/grafana:latest
-    links:
-      - elasticsearch
-    ports:
-      - "5602:3000"
