@@ -1,2 +1,5 @@
-/.filebeat
-/test.log
+.filebeat
+*.log
+/data
+/logs
+docker-compose.yml

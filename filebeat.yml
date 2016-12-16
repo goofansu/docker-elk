@@ -1,19 +1,13 @@
-filebeat:
-  prospectors:
-    -
-      paths:
-        - "*.log"
-      fields:
-        format: json
-    -
-      input_type: stdin
-      fields:
-        format: kv
-
-  spool_size: 10
-  idle_timeout: 1s
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - "*.log"
+  fields:
+    format: json
+- input_type: stdin
+  fields:
+    format: kv
 
 output:
   logstash:
     hosts: ["127.0.0.1:10200"]
-    index: hope
