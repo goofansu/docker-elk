@@ -11,7 +11,7 @@ Saving test.log into elasticsearch via filebeat and logstash.
 
 # Run
 
-1. `docker-compose up`
+1. `docker-compose -f docker-compose-latest.yml up`
 2. `filebeat -c filebeat.yml`
 
 # Test
