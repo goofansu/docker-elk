@@ -7,7 +7,7 @@ Saving test.log into elasticsearch via filebeat and logstash.
 
 # Requirement (macOS)
 
-`brew install filebeat`
+Use filebeat the same as the ELK version.
 
 # Run
 
