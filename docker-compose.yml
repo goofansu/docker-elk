@@ -5,6 +5,8 @@ services:
     image: elasticsearch:latest
     ports:
       - "9200:9200"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
   kibana:
     image: kibana:latest
