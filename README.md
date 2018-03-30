@@ -11,10 +11,12 @@ Use filebeat the same as the ELK version.
 
 # Run
 
-1. `docker-compose -f docker-compose-latest.yml up`
+1. `docker-compose up`
+
 2. `filebeat -c filebeat.yml`
 
 # Test
 
 * `touch test.log && echo '{"nickname": "test"}' >> test.log`
+
 * In filebeat stdin, input `{"nickname": "test"}` and return

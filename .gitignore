@@ -2,4 +2,3 @@
 *.log
 /data
 /logs
-docker-compose.yml
