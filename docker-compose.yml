@@ -8,13 +8,6 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
-  kibana:
-    image: kibana:latest
-    links:
-      - elasticsearch
-    ports:
-      - "5601:5601"
-
   logstash:
     image: logstash:latest
     links:
@@ -24,3 +17,12 @@ services:
     command: [-f, /config-dir/logstash.conf]
     ports:
       - "10200:10200"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+
+  kibana:
+    image: kibana:latest
+    links:
+      - elasticsearch
+    ports:
+      - "5601:5601"
