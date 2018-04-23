@@ -1,11 +1,10 @@
-RUUID \[\S+\]
+RUUID \S+
 RCONTROLLER (?<controller>[^#]+)#(?<action>\w+)
+RTIME (?<timestamp>%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND} %{ISO8601_TIMEZONE})
 RAILS4PROFILE (?:\(Views: %{NUMBER:viewms}ms \| ActiveRecord: %{NUMBER:activerecordms}ms|\(ActiveRecord: %{NUMBER:activerecordms}ms)?
 
-RAILS4HEAD (?m)%{RUUID:request_id}\W*Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND} %{ISO8601_TIMEZONE})
-RPROCESSING \W*%{RUUID}\W*Processing by %{RCONTROLLER} as (?<format>\S+)\s*
-RPARAMETERS \W*%{RUUID}\W*Parameters: {%{DATA:params}}\s*
-RAILS4FOOT \W*%{RUUID}\W*Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms %{RAILS4PROFILE}%{GREEDYDATA}
-
-# putting it all together
-RAILS4 %{RAILS4HEAD}(?:%{RPROCESSING})?(?:%{RPARAMETERS})?(?<context>(?:%{DATA}\n)*)(?:%{RAILS4FOOT})?
+RAILS4HEAD ^(?:%{RUUID:request_id})?\s*Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at %{RTIME}\n
+RPROCESSING (?:%{RUUID})?\s*Processing by %{RCONTROLLER} as (?<format>\S+)\n
+RPARAMETERS (?:%{RUUID})?\s*Parameters: {%{GREEDYDATA:params}}\n
+RAILS4FOOT (?:%{RUUID})?\s*Completed %{NUMBER:response} %{DATA} in %{NUMBER:totalms}ms %{RAILS4PROFILE}
+RAILS4 %{RAILS4HEAD}(?:%{RPROCESSING})?(?:%{RPARAMETERS})?%{DATA:context}\n%{RAILS4FOOT}
