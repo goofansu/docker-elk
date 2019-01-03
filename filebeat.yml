@@ -1,17 +1,8 @@
 filebeat.prospectors:
-- paths: ["/Users/james/work/faria/openapply/log/development.log"]
-  tags: ["openapply"]
-  multiline:
-    pattern: '^(?:\[\S+\])?\W*Started'
-    negate: true
-    match: after
-  fields:
-    index: "openapply"
-
-- paths: ["/Users/james/work/faria/openapply/log/lograge_development.log"]
-  tags: ["openapply", "lograge"]
-  fields:
-    index: "openapply_lograge"
+- input_type: log
+  paths:
+    - /Users/james/src/eduvo/openapply/log/lograge_development.log
+  tags: ["lograge"]
 
 output:
   logstash:

@@ -2,14 +2,14 @@ version: '2'
 
 services:
   elasticsearch:
-    image: elasticsearch:latest
+    image: elasticsearch:5-alpine
     ports:
       - "9200:9200"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
   logstash:
-    image: logstash:latest
+    image: logstash:5
     links:
       - elasticsearch
     volumes:
@@ -21,7 +21,7 @@ services:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
 
   kibana:
-    image: kibana:latest
+    image: kibana:5
     links:
       - elasticsearch
     ports:
