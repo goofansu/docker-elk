@@ -1,7 +1,7 @@
-docker-elk
+elk-playground
 ===
 
-Simple dev environment for ELK stack.
+Playground for ELK stack.
 
 # Run
 
