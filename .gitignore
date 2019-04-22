@@ -1,4 +1,2 @@
-.filebeat
-*.log
-/data
-/logs
+/filebeat/data
+/filebeat/logs

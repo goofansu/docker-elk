@@ -13,7 +13,7 @@ services:
     links:
       - elasticsearch
     volumes:
-      - ./:/config-dir
+      - ./logstash/:/config-dir
     command: [-f, /config-dir/logstash.conf]
     ports:
       - "10200:10200"
