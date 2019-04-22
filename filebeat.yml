@@ -1,9 +1,0 @@
-filebeat.prospectors:
-- input_type: log
-  paths:
-    - /Users/james/src/eduvo/openapply/log/lograge_development.log
-  tags: ["lograge"]
-
-output:
-  logstash:
-    hosts: ["127.0.0.1:10200"]
