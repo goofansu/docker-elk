@@ -1,4 +1,4 @@
-elk-playground
+docker-elk
 ===
 
 Playground for ELK stack.
