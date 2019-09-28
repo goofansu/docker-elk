@@ -1,7 +1,7 @@
 docker-elk
 ===
 
-Playground for ELK stack.
+Playground for [ELK](https://www.elastic.co/what-is/elk-stack) stack.
 
 # Run
 
