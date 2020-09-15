@@ -1,0 +1,14 @@
+{
+  "remote.SSH.defaultForwardedPorts": [
+    {
+      "name": "kibana",
+      "localPort": 5601,
+      "remotePort": 5601,
+    },
+    {
+      "name": "filebeat",
+      "localPort": 10200,
+      "remotePort": 10200,
+    },
+  ],
+}
