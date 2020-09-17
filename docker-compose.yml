@@ -3,10 +3,10 @@ version: "2"
 services:
   elasticsearch:
     image: elasticsearch:5-alpine
-    ports:
-      - "9200:9200"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - default
 
   logstash:
     image: logstash:5
@@ -19,6 +19,8 @@ services:
       - "10200:10200"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - default
 
   kibana:
     image: kibana:5
@@ -26,3 +28,14 @@ services:
       - elasticsearch
     ports:
       - "5601:5601"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.docker-elk.rule=Host(`${KIBANA_HOST}`)"
+    networks:
+      - default
+      - web
+
+networks:
+  default:
+  web:
+    external: true
