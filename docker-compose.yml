@@ -2,14 +2,16 @@ version: "2"
 
 services:
   elasticsearch:
-    image: elasticsearch:5-alpine
+    image: elasticsearch:7.9.1
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.type=single-node"
+
     networks:
       - default
 
   logstash:
-    image: logstash:5
+    image: logstash:7.9.1
     links:
       - elasticsearch
     volumes:
@@ -23,7 +25,7 @@ services:
       - default
 
   kibana:
-    image: kibana:5
+    image: kibana:7.9.1
     links:
       - elasticsearch
     ports:
