@@ -1,0 +1,32 @@
+input {
+  beats {
+    port => 10200
+  }
+}
+
+filter {
+  json {
+    source => "message"
+    remove_field => ["message"]
+  }
+}
+
+filter {
+  if [teamid] == "" {
+    mutate {
+      remove_field => ["teamid"]
+    }
+  }
+}
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+
+  elasticsearch {
+    hosts => ["http://elasticsearch:9200"]
+    index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+    document_type => "%{[@metadata][type]}"
+  }
+}

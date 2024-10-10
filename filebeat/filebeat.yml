@@ -1,0 +1,12 @@
+filebeat.prospectors:
+- input_type: stdin
+  tags: ["lograge"]
+
+- input_type: log
+  paths:
+    - test.log
+  tags: ["lograge"]
+  
+output:
+  logstash:
+    hosts: ["127.0.0.1:10200"]

@@ -1,0 +1,33 @@
+input {
+  beats {
+    port => 10200
+  }
+}
+
+filter {
+  grok {
+    match => {
+      "message" => "%{GREEDYDATA:raw_timestamp} %{NUMBER:r} %{DATA:s} %{NUMBER:id}:%{DATA:server}:%{GREEDYDATA:syslog_message}"
+    }
+  }
+}
+
+filter {
+  kv {
+    source => "syslog_message"
+    field_split => ","
+    remove_field => [ "syslog_message" ]
+  }
+}
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+  elasticsearch {
+    hosts => ["http://elasticsearch:9200"]
+    index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+    document_type => "%{[@metadata][type]}"
+  }
+
+}

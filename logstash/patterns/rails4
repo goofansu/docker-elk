@@ -1,0 +1,11 @@
+RCONTROLLER (?<controller>[^#]+)#(?<action>\w+)
+RTIME (?<timestamp>%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND} %{ISO8601_TIMEZONE})
+RAILS4PROFILE (?:\(Views: %{NUMBER:viewms}ms \| ActiveRecord: %{NUMBER:activerecordms}ms|\(ActiveRecord: %{NUMBER:activerecordms}ms)?
+
+RAILS4HEAD \s*Started %{WORD:verb} "%{URIPATH:request}(?:%{URIPARAM})?" for %{IPORHOST:clientip} at %{RTIME}\n
+RPROCESSING \s*Processing by %{RCONTROLLER} as (?<format>\S+)\n
+RPARAMETERS \s*Parameters: %{DATA:params}\n
+RAILS4FOOT \s*Completed %{NUMBER:response} %{DATA} in %{NUMBER:totalms}ms %{RAILS4PROFILE}
+
+RPREFIX_TAGS \[(?<instance>.*?)\] \[(?<subdomain>.*?)\] \[(?<request_id>.*?)\]
+RAILS4 ^(?:%{RPREFIX_TAGS})?%{RAILS4HEAD}(?:%{RPROCESSING})?(?:%{RPARAMETERS})?%{GREEDYDATA:context}\\n%{RAILS4FOOT}
